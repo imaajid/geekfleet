@@ -9,14 +9,18 @@
 		  <div class="collapse navbar-collapse" id="navbarNav">
 		    <ul class="navbar-nav">
 		      <li class="nav-item active">
-		        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+		        <router-link class="nav-link" to="/">Home <span class="sr-only">(current)</span></router-link>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Features</a>
+		        <router-link class="nav-link" to="/login">login</router-link>
 		      </li>
 		      <li class="nav-item">
-		        <a class="nav-link" href="#">Pricing</a>
+		        <router-link class="nav-link" to="/register">Register</router-link>
 		      </li>
+			  <li class="nav-item">
+		        <router-link class="nav-link" to="/forgetpassward">Forget Password</router-link>
+		      </li>
+			  
 		    </ul>
 		  </div>
 		</div>
