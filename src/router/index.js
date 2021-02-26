@@ -5,20 +5,29 @@ import ProductPage from '@/components/ProductPage'
 import Login from '@/components/Login'
 import Register from '@/components/Register'
 import ForgetPassword from '@/components/ForgetPassword'
+import userCreate from '@/pages/users/userCreate'
+import userList from '@/pages/users/userList'
+import userEdit from '@/pages/users/userEdit'
+import ticketCreate from '@/pages/tickets/ticketCreate'
+import ticketList from '@/pages/tickets/ticketList'
+import ticketEdit from '@/pages/tickets/ticketEdit'
+import deviceCreate from '@/pages/device/deviceCreate'
+import deviceEdit from '@/pages/device/deviceEdit'
+import deviceList from '@/pages/device/deviceList'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
     {
-      path: '/',
-      name: 'Products',
-      component: Products
+      path: '/useredit',
+      name: 'useredit',
+      component: userEdit
     },
     {
-      path: '/product/:id',
-      name: 'ProductPage',
-      component: ProductPage
+      path: '/usercreate',
+      name: 'usercreate',
+      component: userCreate
     },
     {
       path: '/login',
@@ -31,9 +40,39 @@ export default new Router({
       component: Register
     },
     {
-      path: '/forgetpassward',
-      name: 'forgetpassword',
-      component: ForgetPassword
+      path: '/userlist',
+      name: 'userlist',
+      component: userList
+    },
+    { 
+      path: '/ticketcreate',
+      name: 'ticketcreate',
+      component: ticketCreate
+    },
+    { 
+      path: '/ticketlist',
+      name: 'ticketlist',
+      component: ticketList
+    },
+    { 
+      path: '/ticketedit',
+      name: 'ticketedit',
+      component: ticketEdit
+    },
+    { 
+      path: '/devicecreate',
+      name: 'devicecreate',
+      component: deviceCreate
+    },
+    { 
+      path: '/devicelist',
+      name: 'devicelist',
+      component: deviceList
+    },
+    { 
+      path: '/deviceedit',
+      name: 'deviceedit',
+      component: deviceEdit
     }
   ]
 })
