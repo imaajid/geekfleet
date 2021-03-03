@@ -17,6 +17,10 @@
     "popper.js": "^1.14.6",
     "vform": "^1.0.1",
     "vue": "^2.5.2",
+    "vue-feather-icon": "^1.2.0",
+    "vue-feather-icons": "^5.1.0",
+    "vue-material-design-icons": "^4.11.0",
+    "vue-material-icon": "^1.0.1",
     "vue-router": "^3.0.1"
   },
   "devDependencies": {

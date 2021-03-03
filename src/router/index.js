@@ -20,10 +20,10 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/useredit',
+      path: '/useredit/',
       name: 'useredit',
       component: userEdit
-    },
+    },  
     {
       path: '/usercreate',
       name: 'usercreate',

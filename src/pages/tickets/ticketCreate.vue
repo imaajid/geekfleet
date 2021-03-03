@@ -19,12 +19,12 @@
                         
                         <div class="form-group">
                             <label for="name">Summary</label>
-                            <input type="text" class="form-control" id="name" autocomplete="off"
+                            <input v-model="summary" type="text" class="form-control" id="name" autocomplete="off"
                                    placeholder="Summary" name="summary">
                         </div>
                            <div class="form-group">
                             <label for="description">Description</label>
-                            <textarea class="form-control" id="description" name="description" placeholder="Description"
+                            <textarea v-model="description" class="form-control" id="description" name="description" placeholder="Description"
                              rows="5"></textarea>
                         </div>
                         	<div class="form-group">

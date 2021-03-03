@@ -161,6 +161,7 @@ export default {
       })
     },
     onSubmit(){
+      console.log("onSubmit");
       db.collection('products').add(this.productData).then(this.getProducts)
       this.productData.product_id = ''
       this.productData.product_name = ''

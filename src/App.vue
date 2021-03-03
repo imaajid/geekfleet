@@ -1,6 +1,8 @@
 <template>
  <div class="main-wrapper" id="app">  
+   
         <Sidebar />
+       
         <div class="page-wrapper">
             <!-- partial:partials/_navbar.html -->
             <Navbar />

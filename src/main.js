@@ -3,8 +3,13 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import VueMaterialIcon from 'vue-material-icon'
+
+
+Vue.component(VueMaterialIcon.name, VueMaterialIcon)
 
 Vue.config.productionTip = false;
+
 
 /* eslint-disable no-new */
 new Vue({

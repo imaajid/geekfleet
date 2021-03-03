@@ -15,46 +15,34 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">Users Form</h6>
-                    <form class="forms-sample" v-on:submit.prevent="onSubmit">
+                     <form @submit.prevent="saveUser" class="forms-sample">
+                    
                         
                         <!-- <div class="form-group">
-                            <label for="name"> Name</label>
-                            <input v-model="productData.product_name" type="text" class="form-control" id="name" autocomplete="off"
-                                   placeholder="Name" name="name">
+                            <label> Id</label>
+                            <input v-model="id" type="number" class="form-control" autocomplete="off"
+                                  >
                         </div> -->
                         <div class="form-group">
-                            <label for="email">Name</label>
-                            <input v-model="productData.product_name" type="text" class="form-control" 
-                                   placeholder="Email">
+                            <label for="Name">Name</label>
+                            <input v-model="name" type="text" class="form-control" 
+                                   placeholder="Name">
                         </div>
-                       <!--  <div class="form-group">
-                            <label for="password">Password</label>
-                            <input type="password" class="form-control" id="password" autocomplete="off"
-                                   placeholder="Password" name="password">
-                        </div>
-                        <div class="form-group">
-                            <label for="confirm-password">Confirm Password</label>
-                            <input type="password" class="form-control" id="confirm-password" autocomplete="off"
-                                   placeholder="Password" name="confirm-password">
-                        </div>
+                       
                         <div class="form-group">
                             <label for="phone_no">Phone No</label>
                             <div class="input-group-prepend">
                                 <span class="input-group-text">+92</span>
-                                <input type="text" class="form-control" placeholder="3352968699" id="phone_no"
-                                       name="phone_no">
+                                <input v-model="phone" type="text" class="form-control" placeholder="3352968699" 
+                                       >
                             </div>
                         </div>
                         <div class="form-group">
                             <label for="business_email">Address</label>
-                            <input type="email" class="form-control" id="business_email" autocomplete="off"
-                                   placeholder="Business Email" name="business_email">
+                            <input v-model="address" type="text" class="form-control" autocomplete="off"
+                                   placeholder="Address">
                         </div>
-                        <div class="form-group">
-                            <label for="address">Address</label>
-                            <textarea class="form-control" id="address" name="address" placeholder="Address"
-                             rows="5"></textarea>
-                        </div> -->
+                        
                     
                        
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -66,44 +54,35 @@
     </div>
   </div>
 </template>
-
 <script>
-import db from '@/db'
-export default {
-  name: 'usercreate',
-    data () {
-    return {
-      editId: '',
-      productData: {
-        'id' : '',
-        'product_id': '',
-        'product_name': '',
-        'product_price': ''
+    import db from '@/db/index';
+    export default {
+      name: 'userCreate',
+      data () {
+        return {
+         
+          name: null,
+          phone: null,
+          address: null,
+         
+        }
       },
-      editProductData: {
-        'id' : '',
-        'product_id': '',
-        'product_name': '',
-        'product_price': ''
-      },
-      products: []
+      methods: {
+        saveUser () {
+          db.collection('user').add({
+           
+            name: this.name,
+            phone: this.phone,
+            address: this.address   
+          })
+          .then(docRef => {
+            console.log('user added: ', docRef.id)
+            this.$router.push('/userlist')
+          })
+          .catch(error => {
+            console.error('Error adding user: ', error)
+          })
+        }
+      }
     }
-  },
-
-   onSubmit(){
-      db.collection('products').add(this.productData).then(this.getProducts)
-      this.productData.product_name = ''
-     
-
-    },
-    // onDelete(product_id){
-    //   db.collection('products').where('product_id', '==', product_id).get().then(querySnapshot =>{
-    //     querySnapshot.forEach(doc=>{
-    //       doc.ref.delete().then(this.getProducts)
-    //     })
-    //   })
-    // }
-    
-   
-}
 </script>
