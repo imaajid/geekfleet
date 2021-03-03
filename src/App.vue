@@ -1,23 +1,21 @@
 <template>
- <div class="main-wrapper" id="app">  
-   
-        <Sidebar />
-       
-        <div class="page-wrapper">
-            <!-- partial:partials/_navbar.html -->
-            <Navbar />
-            <!-- partial -->
-            <div class="page-content">
-                <router-view/>
-            </div>
-            <!-- partial:partials/_footer.html -->
-         
-            <!-- partial -->
- </div>
- </div>  
+  <div class="main-wrapper" id="app">
+    <!-- <Sidebar /> -->
 
+    <!-- <div class="page-wrapper"> -->
+    <!-- partial:partials/_navbar.html -->
+    <!-- <Navbar /> -->
+    <!-- partial -->
+    <!-- <div class="page-content"> -->
+    <router-view />
+    <!-- </div> -->
+    <!-- partial:partials/_footer.html -->
 
-<!-- 
+    <!-- partial -->
+    <!-- </div> -->
+  </div>
+
+  <!-- 
 
   <div >
     <Navbar/>
@@ -34,18 +32,17 @@
 
 
 <script>
-import Navbar from '@/components/Navbar'
-import Sidebar from '@/components/Sidebar'
+import Navbar from "@/components/Navbar";
+import Sidebar from "@/components/Sidebar";
 export default {
-  name: 'App',
-  components:{
+  name: "App",
+  components: {
     Navbar,
-    Sidebar
-
-  }
-}
+    Sidebar,
+  },
+};
 </script>
 
 <style>
- @import "./assets/css/demo_1/style.css";
+@import "./assets/css/demo_1/style.css";
 </style>

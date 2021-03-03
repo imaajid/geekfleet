@@ -16,29 +16,24 @@
                   <h5 class="text-muted font-weight-normal mb-4">
                     Welcome back! Log in to your account.
                   </h5>
-                  <form class="forms-sample" method="POST" action="">
+                  <form class="forms-sample" @submit.prevent="submit">
                     <div class="form-group">
                       <label for="email">E-Mail Address</label>
                       <input
-                        id="email"
                         type="email"
                         class="form-control"
-                        name="email"
                         value=""
                         required
-                        autocomplete="email"
-                        autofocus
+                        v-model="email"
                       />
                     </div>
                     <div class="form-group">
                       <label for="password">Password</label>
                       <input
-                        id="password"
                         type="password"
                         class="form-control"
-                        name="password"
                         required
-                        autocomplete="current-password"
+                        v-model="password"
                       />
                     </div>
                     <div class="form-check form-check-flat form-check-primary">
@@ -71,9 +66,28 @@
   </div>
 </template>
 <script>
+import db from "@/db/index";
+import firebase from "firebase";
+
 export default {
-  mounted() {
-    console.log("Component mounted.");
+  data() {
+    return {
+      email: "",
+      password: "",
+    };
+  },
+  methods: {
+    submit() {
+      firebase
+        .auth()
+        .signInWithEmailAndPassword(this.email, this.password)
+        .then((data) => {
+          this.$router.push("/userlist");
+        })
+        .catch((err) => {
+          console.error("Error adding user");
+        });
+    },
   },
 };
 </script>
