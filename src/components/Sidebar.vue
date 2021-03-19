@@ -15,9 +15,9 @@
           <li class="nav-item">
             <a href="dashboard-one.html" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
-              
+
               <airplay-icon size="20" class="custom-class"></airplay-icon>
-              <span class="link-title">Dashboard</span>
+              <span style="padding-left: 7px">Dashboard</span>
             </a>
           </li>
           <li class="nav-item nav-category">web apps</li>
@@ -31,9 +31,8 @@
               aria-controls="emails"
             >
               <i class="link-icon" data-feather="mail"></i>
-              
-
-              <span class="link-title">user</span>
+              <users-icon size="1.2x" class="custom-class"></users-icon>
+              <span style="padding-left: 7px">user</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="emails">
@@ -67,8 +66,9 @@
               aria-expanded="false"
               aria-controls="emails"
             >
-              <vue-material-icon name="airplanemode_active"></vue-material-icon>
-              <span class="link-title">Tickets</span>
+              <activity-icon size="1.2x" class="custom-class"></activity-icon>
+
+              <span style="padding-left: 7px">Tickets</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="tickets">
@@ -86,7 +86,6 @@
 
           <li class="nav-item nav-category">web apps</li>
           <li class="nav-item">
-             
             <a
               class="nav-link"
               data-toggle="collapse"
@@ -94,10 +93,10 @@
               aria-expanded="false"
               aria-controls="emails"
             >
-              <vue-material-icon
+              <SmartphoneIcon 
                 name="stay_primary_portrait"
-              ></vue-material-icon>
-              <span class="link-title">Device</span>
+              ></SmartphoneIcon>
+              <span style="padding-left: 7px">Device</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="device">
@@ -106,7 +105,7 @@
                   <router-link to="/devicelist" class="nav-link"
                     >List Device</router-link
                   >
-                </li> 
+                </li>
               </ul>
             </div>
           </li>
@@ -116,11 +115,31 @@
   </div>
 </template>
 <script>
-import { AirplayIcon, AtSignIcon } from "vue-feather-icons";
+import {
+  AirplayIcon,
+  AtSignIcon,
+  ActivityIcon,
+  BoxIcon,
+  ShieldIcon,
+  LockIcon,
+  UsersIcon,
+  ListIcon,
+  PackageIcon,
+  SmartphoneIcon,
+} from "vue-feather-icons";
+
 export default {
   components: {
+    // Icons
     AirplayIcon,
-  
+    ActivityIcon,
+    BoxIcon,
+    ShieldIcon,
+    LockIcon,
+    UsersIcon,
+    ListIcon,
+    PackageIcon,
+    SmartphoneIcon,
   },
   mounted() {
     console.log("Component mounted.");

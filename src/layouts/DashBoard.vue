@@ -1,19 +1,22 @@
 <template>
-  <div>
+  <div class="main-wrapper" id="app">
     <Sidebar />
-    <div>
-      <Header />
-      <div>
-        <router-view />
+
+    <div class="page-wrapper">
+      <!-- partial:partials/_navbar.html -->
+      <Navbar />
+      <!-- partial -->
+      <div class="page-content">
+        <slot></slot>
       </div>
     </div>
   </div>
 </template>
 
-
 <script>
 import Navbar from "@/components/Navbar";
 import Sidebar from "@/components/Sidebar";
+
 export default {
   name: "App",
   components: {
@@ -24,5 +27,5 @@ export default {
 </script>
 
 <style>
-@import "./assets/css/demo_1/style.css";
+@import "../assets/css/demo_1/style.css";
 </style>

@@ -1,9 +1,9 @@
 <template>
-  <div>
+  <div class="main-wrapper">
     <Sidebar />
-    <div>
+    <div class="page-wrapper">
       <Header />
-      <div>
+      <div class="page-content">
         <router-view />
       </div>
     </div>
