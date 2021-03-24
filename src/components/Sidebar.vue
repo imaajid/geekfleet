@@ -2,8 +2,9 @@
   <div>
     <nav class="sidebar">
       <div class="sidebar-header">
-        <a href="#" class="sidebar-brand"> Noble<span>UI</span> </a>
+        <a href="/dashboard" class="sidebar-brand"> Noble<span>UI</span> </a>
         <div class="sidebar-toggler not-active">
+      
           <span></span>
           <span></span>
           <span></span>
@@ -78,9 +79,56 @@
                     >List Tickets</router-link
                   >
                 </li>
+                <li class="nav-item">
+                  <router-link to="/ticketcreate" class="nav-link"
+                    >Create Tickets</router-link
+                  >
+                </li>
+                <li class="nav-item">
+                  <router-link to="/ticketedit" class="nav-link"
+                    >Edit Tickets</router-link
+                  >
+                </li>
               </ul>
             </div>
           </li>
+       <!-- categories -->
+           <li class="nav-item nav-category">web apps</li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#categories"
+              role="button"
+              aria-expanded="false"
+              aria-controls="emails"
+            >
+              <vue-material-icon name="airplanemode_active"></vue-material-icon>
+              <span class="link-title">categories</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="categories">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <router-link to="/categorieslist" class="nav-link"
+                    >List categories</router-link
+                  >
+                </li>
+                <li class="nav-item">
+                  <router-link to="/useredit" class="nav-link"
+                    >Edit categories</router-link
+                  >
+                </li>
+                <li class="nav-item">
+                  <router-link to="/categoriescreate" class="nav-link"
+                    >Create categories</router-link
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
+
+
 
           <!-- Device    -->
 
@@ -107,6 +155,16 @@
                     >List Device</router-link
                   >
                 </li> 
+                 <li class="nav-item">
+                  <router-link to="/devicecreate" class="nav-link"
+                    >Create Device</router-link
+                  >
+                </li>
+                 <li class="nav-item">
+                  <router-link to="/deviceedit" class="nav-link"
+                    >Edit Device</router-link
+                  >
+                </li>  
               </ul>
             </div>
           </li>

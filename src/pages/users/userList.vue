@@ -52,9 +52,10 @@
                           Delete
                         </button>
                       </form>
-                      <router-link to="{name: 'useredit',
-                       params: { id: user.id }
-                       }" class="btn btn-warning btn-icon-text">
+                         <router-link :to="{
+                          name: 'useredit',
+                          params: {id: user.id }
+                        }" class="btn btn-warning btn-icon-text">
                         <i class="btn-icon-prepend" data-feather="edit"></i>
                         Edit
                       </router-link>

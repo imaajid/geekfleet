@@ -15,21 +15,21 @@
             <div class="card">
                 <div class="card-body">
                     <h6 class="card-title">User Update Form</h6>
-                    <form class="forms-sample">
+                    <form  @submit.prevent="updateUser" class="forms-sample">
                     
-                        <div class="form-group">
+                        <div  class="form-group">
                             <label for="name"> Name</label>
-                            <input type="text" class="form-control" autocomplete="off"
+                            <input type="text" v-model="name" class="form-control" autocomplete="off"
                                    placeholder="Name" >
                         </div>
                         <div class="form-group">
                             <label for="email">phone</label>
-                            <input type="number" class="form-control" autocomplete="off"
+                            <input type="number"  v-model="phone" class="form-control" autocomplete="off"
                                    placeholder="phone">
                         </div>
                         <div class="form-group">
                             <label for="address">Address</label>
-                            <input type="text" class="form-control" autocomplete="off"
+                            <input type="text"   v-model="address" class="form-control" autocomplete="off"
                                    placeholder="Address">
                         </div>
                         <button type="submit" class="btn btn-primary mr-2">Submit</button>
@@ -41,3 +41,31 @@
     </div>
   </div>
 </template>
+<script>
+import db from "@/db/index";
+export default {
+  name: "useredit",
+  data() {
+    return {
+      name: null,
+      phone: null,
+      address: null,
+    };
+  },
+  methods: {
+   onEdit() {
+        db.collection('user')
+          .where('id', '==', this.$route.params.id).get().then(querySnapshot => {
+            querySnapshot.forEach(doc => {
+              doc.ref.set({
+                id: this.$route.params.id,
+                name: this.useredit.name,
+                phone: this.useredit.phone,
+                address: this.useredit.address
+              })
+            })
+          })
+      },
+  },
+};
+</script>

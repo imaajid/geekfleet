@@ -47,26 +47,17 @@
                           </thead>
                           <tbody>
                            
-                            <tr>
+                            <tr v-for="(devices, index) in devices" :key="index">
                                 
-                                <td></td>
-                                <td></td>
+                                <td>{{devices.id}}</td>
+                                <td>{{devices.name}}</td>
+                                <td>{{devices.categories}}</td>
+                                <td>{{devices.serial_number}}</td>
+                                <td>{{devices.note}}</td>
                                 <td>
-                               
-                               <label class="badge badge-success"></label>
-                                     
-                                </td>
-                                <td>
-                                   
-                                </td>
-                                <td>
-                                    
-                                </td>
-                                <td>
-                                    <form class="d-inline-block" action=""
-                                          method="POST">
+                                    <form class="d-inline-block">
                                       
-                                        <button type="submit" class="btn btn-danger btn-icon-text">
+                                        <button  @click="deletedevice(devices.id)" class="btn btn-danger btn-icon-text">
                                             <i class="btn-icon-prepend" data-feather="trash"></i> Delete
                                         </button>
                                     </form>
@@ -87,3 +78,61 @@
  </div>
 </template>
 
+<script>
+import db from "@/db/index";
+export default {
+  name: "devicelist",
+  data() {
+    return {
+      devices: [],
+    };
+  },
+  mounted() {
+    db.collection("devices")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let obj = {
+            id: doc.id,
+            name: doc.data().name,
+            categories: doc.data().categories,
+            serial_number: doc.data().serial_number,
+            note: doc.data().note,
+            
+          };
+          this.devices.push(obj);
+        });
+      });
+  },
+  //   watch: {
+  //     $route: "fetchData",
+  //   },
+  methods: {
+    fetchData() {
+      db.collection("devices")
+        .get()
+        .then((querySnapshot) => {
+          querySnapshot.forEach((doc) => {
+          
+            this.name = doc.data().name;
+            this.categories = doc.data().categories;
+            this.serial_number = doc.data().serial_number;
+            this.note = doc.data().note;
+            
+          });
+        });
+    },
+    async deletedevice(id) {
+      db.collection("devices")
+        .doc(id)
+        .delete()
+        .then(() => {
+          console.log("Document successfully deleted!");
+        })
+        .catch(function (error) {
+          console.error("Error removing document: ", error);
+        });
+    },
+  },
+};
+</script>

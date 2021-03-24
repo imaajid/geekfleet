@@ -14,11 +14,23 @@ import ticketEdit from '@/pages/tickets/ticketEdit'
 import deviceCreate from '@/pages/device/deviceCreate'
 import deviceEdit from '@/pages/device/deviceEdit'
 import deviceList from '@/pages/device/deviceList'
+import categoriesCreate from '@/pages/categories/categoriesCreate'
+import categoriesList from '@/pages/categories/categoriesList'
 
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/categorieslist/',
+      name: 'categorieslist',
+      component: categoriesList
+    }, 
+    {
+      path: '/categoriescreate/',
+      name: 'categoriescreate',
+      component: categoriesCreate
+    }, 
     {
       path: '/useredit/',
       name: 'useredit',
