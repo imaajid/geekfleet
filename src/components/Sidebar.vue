@@ -91,7 +91,7 @@
             </div>
           </li>
        <!-- categories -->
-           <li class="nav-item nav-category">web apps</li>
+         <li class="nav-item nav-category">web apps</li>
           <li class="nav-item">
             <a
               class="nav-link"
@@ -126,12 +126,46 @@
             </div>
           </li>
 
-
+<!-- Event -->
+ <li class="nav-item nav-category">web apps</li>
+          <li class="nav-item">
+            <a
+              class="nav-link"
+              data-toggle="collapse"
+              href="#event"
+              role="button"
+              aria-expanded="false"
+              aria-controls="emails"
+            >
+              <vue-material-icon name="airplanemode_active"></vue-material-icon>
+              <span class="link-title">Event</span>
+              <i class="link-arrow" data-feather="chevron-down"></i>
+            </a>
+            <div class="collapse" id="event">
+              <ul class="nav sub-menu">
+                <li class="nav-item">
+                  <router-link to="/eventlist" class="nav-link"
+                    >List Event</router-link
+                  >
+                </li>
+                <li class="nav-item">
+                  <router-link to="/" class="nav-link"
+                    >Edit Event</router-link
+                  >
+                </li>
+                <li class="nav-item">
+                  <router-link to="/eventcreate" class="nav-link"
+                    >Create Event</router-link
+                  >
+                </li>
+              </ul>
+            </div>
+          </li>
 
           <!-- Device    -->
 
           <li class="nav-item nav-category">web apps</li>
-          <li class="nav-item">
+          <li class="nav-item"> 
              
             <a
               class="nav-link"
@@ -141,7 +175,7 @@
               aria-controls="emails"
             >
               <vue-material-icon
-                name="stay_primary_portrait"
+                name="stay_primary_portrait"  
               ></vue-material-icon>
               <span class="link-title">Device</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
@@ -165,6 +199,7 @@
                 </li>  
               </ul>
             </div>
+             
           </li>
         </ul>
       </div>
@@ -176,7 +211,7 @@ import { AirplayIcon, AtSignIcon } from "vue-feather-icons";
 export default {
   components: {
     AirplayIcon,
-  
+    
   },
   mounted() {
     console.log("Component mounted.");

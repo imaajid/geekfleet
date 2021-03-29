@@ -17,10 +17,23 @@ import deviceList from '@/pages/device/deviceList'
 import categoriesCreate from '@/pages/categories/categoriesCreate'
 import categoriesList from '@/pages/categories/categoriesList'
 
+
+import eventCreate from '@/pages/event/eventCreate'
+import eventList from '@/pages/event/eventList'
 Vue.use(Router)
 
 export default new Router({
   routes: [
+    {
+      path: '/eventlist/',
+      name: 'eventlist',
+      component: eventList
+    },
+    {
+      path: '/eventcreate/',
+      name: 'eventcreate',
+      component: eventCreate
+    }, 
     {
       path: '/categorieslist/',
       name: 'categorieslist',
