@@ -35,7 +35,7 @@
                             <input type="text" class="form-control"  v-model="name" id="name" autocomplete="off"
                                    placeholder="name" name="name">
                         </div>
-                         <div class="form-group">
+                         <div class="form-group">   
                             <label for="name">  Number of guests that have already signed up</label>
                             <input type="text" class="form-control"  v-model="name" id="name" autocomplete="off"
                                    placeholder="name" name="name">

@@ -21,40 +21,8 @@
               <span class="link-title">Dashboard</span>
             </a>
           </li>
-          <li class="nav-item nav-category">web apps</li>
-          <li class="nav-item">
-            <a
-              class="nav-link"
-              data-toggle="collapse"
-              href="#emails"
-              role="button"
-              aria-expanded="false"
-              aria-controls="emails"
-            >
-              <i class="link-icon" data-feather="mail"></i>
-              <span class="link-title">user</span>
-              <i class="link-arrow" data-feather="chevron-down"></i>
-            </a>
-            <div class="collapse" id="emails">
-              <ul class="nav sub-menu">
-                <li class="nav-item">
-                  <router-link to="/userlist" class="nav-link"
-                    >List User</router-link
-                  >
-                </li>
-                <li class="nav-item">
-                  <router-link to="/useredit" class="nav-link"
-                    >Edit User</router-link
-                  >
-                </li>
-                <li class="nav-item">
-                  <router-link to="/usercreate" class="nav-link"
-                    >Create User</router-link
-                  >
-                </li>
-              </ul>
-            </div>
-          </li>
+          
+        
           <!-- tickets -->
           <li class="nav-item nav-category">web apps</li>
           <li class="nav-item">
@@ -67,7 +35,7 @@
               aria-controls="emails"
             >
               <vue-material-icon name="airplanemode_active"></vue-material-icon>
-              <span class="link-title">Tickets</span>
+              <span class="link-title">Ticket</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="tickets">
@@ -79,14 +47,10 @@
                 </li>
                 <li class="nav-item">
                   <router-link to="/ticketcreate" class="nav-link"
-                    >Create Tickets</router-link
+                    >Create Ticket</router-link
                   >
                 </li>
-                <li class="nav-item">
-                  <router-link to="/ticketedit" class="nav-link"
-                    >Edit Tickets</router-link
-                  >
-                </li>
+               
               </ul>
             </div>
           </li>
@@ -101,8 +65,8 @@
               aria-expanded="false"
               aria-controls="emails"
             >
-              <vue-material-icon name="airplanemode_active"></vue-material-icon>
-              <span class="link-title">categories</span>
+              <vue-material-icon name="switch_video"></vue-material-icon>
+              <span class="link-title">category</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
             <div class="collapse" id="categories">
@@ -112,14 +76,10 @@
                     >List categories</router-link
                   >
                 </li>
-                <li class="nav-item">
-                  <router-link to="/useredit" class="nav-link"
-                    >Edit categories</router-link
-                  >
-                </li>
+                
                 <li class="nav-item">
                   <router-link to="/categoriescreate" class="nav-link"
-                    >Create categories</router-link
+                    >Create category</router-link
                   >
                 </li>
               </ul>
@@ -137,7 +97,7 @@
               aria-expanded="false"
               aria-controls="emails"
             >
-              <vue-material-icon name="airplanemode_active"></vue-material-icon>
+              <vue-material-icon name="snooze"></vue-material-icon>
               <span class="link-title">Event</span>
               <i class="link-arrow" data-feather="chevron-down"></i>
             </a>
@@ -148,11 +108,7 @@
                     >List Event</router-link
                   >
                 </li>
-                <li class="nav-item">
-                  <router-link to="/" class="nav-link"
-                    >Edit Event</router-link
-                  >
-                </li>
+                
                 <li class="nav-item">
                   <router-link to="/eventcreate" class="nav-link"
                     >Create Event</router-link
@@ -192,12 +148,8 @@
                     >Create Device</router-link
                   >
                 </li>
-                 <li class="nav-item">
-                  <router-link to="/deviceedit" class="nav-link"
-                    >Edit Device</router-link
-                  >
-                </li>  
-              </ul>
+
+                </ul>
             </div>
              
           </li>
