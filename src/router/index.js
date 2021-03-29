@@ -23,6 +23,7 @@ import eventList from '@/pages/event/eventList'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/eventlist/',
