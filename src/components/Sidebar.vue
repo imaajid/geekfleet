@@ -14,12 +14,12 @@
         <ul class="nav">
           <li class="nav-item nav-category">Main</li>
           <li class="nav-item">
-            <router-link to="/https://sleepy-bohr-1b74d2.netlify.app/" class="nav-link">
+            <a href="/https://sleepy-bohr-1b74d2.netlify.app/" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
               
               <airplay-icon size="20" class="custom-class"></airplay-icon>
               <span class="link-title">Dashboard</span>
-            </router-link>
+            </a>
           </li>
           
         
