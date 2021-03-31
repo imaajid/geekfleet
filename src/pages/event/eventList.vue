@@ -1,8 +1,9 @@
-            <ol class="breadcrumb">
+          
 <template>
  <div>
      <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <nav class="page-breadcrumb">
+            <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="">Dashboard</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Categories</li>
             </ol>
@@ -37,9 +38,7 @@
                                 <th>
                                    Number of Guests
                                 </th>
-                                <th>
-                                    Number of guests that have already signed up
-                                </th>
+                                
                                 <th>
                                     Description
                                 </th>
@@ -49,18 +48,18 @@
                             </tr>
                           </thead>
                           <tbody>
-                             <tr>
+                             <tr v-for="(events, index) in events" :key="index">
                                 
-                                 <td></td>
-                                 <td></td>
-                                  <td></td>
-                                   <td></td>
-                                    <td></td>
+                                 <td>{{events.id}}</td>
+                                 <td>{{events.description}}</td>
+                                  <td>{{events.time}}</td>
+                                   <td>{{events.guests}}</td>
+                                    <td>{{events.title}}</td>
                                
                                    <td>
                                     <form class="d-inline-block">
                                       
-                                        <button class="btn btn-danger btn-icon-text">
+                                        <button @click="deleteevent(events.id)" class="btn btn-danger btn-icon-text">
                                             <i class="btn-icon-prepend" data-feather="trash"></i> Delete
                                         </button>
                                     </form>
@@ -84,23 +83,28 @@
 <script>
 import db from "@/db/index";
 export default {
-  name: "categoriesList",
+  name: "eventlist",
   data() {
     return {
-      categories: [],
+      events: [],
     };
   },
   mounted() {
-    db.collection("categories")
+    db.collection("events")
       .get()
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           let obj = {
             id: doc.id,
-            name: doc.data().name,
+            title: doc.data().title,
+            time: doc.data().time,
+            guests: doc.data().guests,
+            description: doc.data().description,
+            
+
            
           };
-          this.categories.push(obj);
+          this.events.push(obj);
         });
       });
   },
@@ -109,18 +113,22 @@ export default {
   //   },
   methods: {
     fetchData() {
-      db.collection("categories")
+      db.collection("events")
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
             this.id = doc.id;
-            this.name = doc.data().name;
+            this.title = doc.data().title;
+            this.time = doc.data().time;
+            this.guests = doc.data().guests;
+            this.description = doc.data().description;
+
             
           });
         });
     },
-    async deletecategories(id) {
-      db.collection("categories")
+    async deleteevent(id) {
+      db.collection("events")
         .doc(id)
         .delete()
         .then(() => {
