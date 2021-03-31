@@ -2,7 +2,7 @@
   <div>
     <nav class="sidebar">
       <div class="sidebar-header">
-        <router-link to="/https://sleepy-bohr-1b74d2.netlify.app/" class="sidebar-brand"> Noble<span>UI</span> </router-link>
+        <router-link to="" class="sidebar-brand"> Noble<span>UI</span> </router-link>
         <div class="sidebar-toggler not-active">
       
           <span></span>
@@ -14,12 +14,12 @@
         <ul class="nav">
           <li class="nav-item nav-category">Main</li>
           <li class="nav-item">
-            <a href="/https://sleepy-bohr-1b74d2.netlify.app/" class="nav-link">
+            <router-link to="/dashboard" class="nav-link">
               <i class="link-icon" data-feather="box"></i>
               
               <airplay-icon size="20" class="custom-class"></airplay-icon>
               <span class="link-title">Dashboard</span>
-            </a>
+            </router-link>
           </li>
           
         
