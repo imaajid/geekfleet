@@ -20,17 +20,7 @@
           <div class="card-body">
             <h6 class="card-title">New Categories</h6>
             <form @submit.prevent="saveCategories" class="forms-sample">
-              <div class="form-group">
-                <label for="name">id</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="id"
-                  id="id"
-                  autocomplete="off"
-                  name="id"
-                />
-              </div>
+              
               <div class="form-group">
                 <label for="name">Name</label>
                 <input

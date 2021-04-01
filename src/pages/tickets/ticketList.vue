@@ -25,9 +25,7 @@
                         <table id="dataTableExample" class="table">
                           <thead>
                             <tr>
-                                <th>
-                                    #
-                                </th>
+                               
                                 <th>
                                     Summary
                                 </th>
@@ -46,7 +44,7 @@
                            
                             <tr v-for="(tickets, index) in tickets" :key="index">
                                 
-                                <td>{{tickets.id }}</td>
+                               
                                 <td>{{tickets.summary }}</td>
                                 <td>{{tickets.description}}</td>
                                 <td>{{tickets.user_device}}</td>
@@ -91,7 +89,7 @@ export default {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           let obj = {
-            id: doc.id,
+           
             summary: doc.data().summary,
             description: doc.data().description,
             user_device: doc.data().user_device,
