@@ -26,9 +26,7 @@
                         <table id="dataTableExample" class="table">
                           <thead>
                             <tr>
-                                <th>
-                                    #
-                                </th>
+                               
                                 <th>
                                     Categories Name
                                 </th>
@@ -41,7 +39,6 @@
                           <tbody>
                              <tr v-for="(categories, index) in categories" :key="index">
                                 
-                                 <td>{{ categories.id }}</td>
                                  <td>{{ categories.name }}</td>
                                
                                    <td>
@@ -109,6 +106,7 @@ export default {
         .doc(id)
         .delete()
         .then(() => {
+          location.reload();
           console.log("Document successfully deleted!");
         })
         .catch(function (error) {

@@ -89,7 +89,7 @@ export default {
       .then((querySnapshot) => {
         querySnapshot.forEach((doc) => {
           let obj = {
-           
+            id:doc.data().id,
             summary: doc.data().summary,
             description: doc.data().description,
             user_device: doc.data().user_device,
@@ -109,7 +109,7 @@ export default {
         .get()
         .then((querySnapshot) => {
           querySnapshot.forEach((doc) => {
-          
+          this.id = doc.data().id;
             this.summary = doc.data().summary;
             this.description = doc.data().description;
             this.user_device = doc.data().user_device;
@@ -123,6 +123,7 @@ export default {
         .doc(id)
         .delete()
         .then(() => {
+
           console.log("Document successfully deleted!");
         })
         .catch(function (error) {
