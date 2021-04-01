@@ -9,7 +9,7 @@
             </ol>
         </nav>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
-            <router-link to="/categoriescreate" class="btn btn-primary btn-icon-text">
+            <router-link to="/eventcreate" class="btn btn-primary btn-icon-text">
                 <i class="btn-icon-prepend" data-feather="plus"></i>
                 Create Categories
             </router-link>
@@ -26,9 +26,7 @@
                         <table id="dataTableExample" class="table">
                           <thead>
                             <tr>
-                                <th>
-                                    #
-                                </th>
+                                
                                 <th>
                                     Event Title
                                 </th>
@@ -50,7 +48,7 @@
                           <tbody>
                              <tr v-for="(events, index) in events" :key="index">
                                 
-                                 <td>{{events.id}}</td>
+                                
                                  <td>{{events.description}}</td>
                                   <td>{{events.time}}</td>
                                    <td>{{events.guests}}</td>

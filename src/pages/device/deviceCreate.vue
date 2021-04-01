@@ -21,18 +21,6 @@
             <h6 class="card-title">New Device</h6>
             <form @submit.prevent="saveDevice" class="forms-sample">
               <div class="form-group">
-                <label for="name">id</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="id"
-                  id="id"
-                  autocomplete="off"
-                  placeholder="Summary"
-                  name="summary"
-                />
-              </div>
-              <div class="form-group">
                 <label for="name">Device Name</label>
                 <input
                   type="text"
@@ -40,32 +28,38 @@
                   v-model="name"
                   id="name"
                   autocomplete="off"
-                  placeholder="Summary"
-                  name="summary"
+                  name="name"
                 />
               </div>
+
+              <!-- <select v-model="selectedOptionId">
+  <option v-for="option in options" :value="option.id" :key="option.id">{{ option.text }}<option>
+</select> -->
+
               <div class="form-group">
                 <label>Categories</label>
+
                 <select
                   class="js-example-basic-single w-100"
-                  v-model="categories"
+                  v-model="category_id"
                 >
-                  <option value="PC/Laptop">PC/Laptop</option>
-                  <option value="Mobile">Mobile</option>
-                  <option value="Networking">Networking</option>
-                  <option value="Home Device">Home Device</option>
+                  <option
+                    v-for="category in categories"
+                    :value="category.name"
+                    :key="category.id"
+                  >
+                    {{ category.name }}
+                  </option>
                 </select>
               </div>
               <div class="form-group">
                 <label for="description">Serial Number</label>
-                <textarea
+                <input
                   class="form-control"
-                  id="description"
                   v-model="serial_number"
                   name="description"
                   placeholder="Description"
-                  rows="5"
-                ></textarea>
+                />
               </div>
               <div class="form-group">
                 <label for="note">Note</label>
@@ -94,7 +88,6 @@ export default {
   name: "devicecreate",
   data() {
     return {
-      id: null,
       name: null,
       categories: null,
       serial_number: null,
@@ -105,9 +98,8 @@ export default {
     saveDevice() {
       db.collection("devices")
         .add({
-          id: this.id,
           name: this.name,
-          categories: this.categories,
+          categories: this.category_id,
           serial_number: this.serial_number,
           note: this.note,
         })
@@ -119,6 +111,26 @@ export default {
           console.error("Error adding user: ", error);
         });
     },
+  },
+  name: "categorieslist",
+  data() {
+    return {
+      categories: [],
+    };
+  },
+  mounted() {
+    db.collection("categories")
+      .get()
+      .then((querySnapshot) => {
+        querySnapshot.forEach((doc) => {
+          let obj = {
+            id: doc.id,
+            name: doc.data().name,
+          };
+          console.log(obj);
+          this.categories.push(obj);
+        });
+      });
   },
 };
 </script>

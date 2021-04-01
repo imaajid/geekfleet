@@ -19,8 +19,8 @@
         <div class="col-md-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h6 class="card-title">Tickets</h6>
-                    <p class="card-description">All the ticket are listed here.</p>
+                    <h6 class="card-title">Device</h6>
+                    <p class="card-description">All the Device are listed here.</p>
                     <div class="table-responsive">
                         <table id="dataTableExample" class="table">
                           <thead>

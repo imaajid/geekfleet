@@ -106,24 +106,26 @@
 <script>
 import db from "@/db/index";
 export default {
-  name: "categoriesCreate",
+  name: "eventcreate",
   data() {
     return {
       eventForm: {},
     };
   },
   methods: {
-    saveEvent() {
+    async saveEvent()  {
       if (this.eventForm.title && this.eventForm.guests) {
-        db.collection("events")
-          .add(this.eventForm)
-          .then((docRef) => {
-            console.log("Event added: ", docRef.id);
-            this.$router.push("/eventlist");
-          })
-          .catch((error) => {
-            console.error("Error adding Event: ", error);
-          });
+        var docRef = await db.collection("events").add(this.eventForm)
+        .then((docRef) => {
+          console.log("Event added: ", docRef.id);
+          db.collection("events").doc(docRef.id).update({ id: docRef.id });
+
+          this.$router.push("/eventlist");
+        })
+        .catch((error) => {
+          console.error("Error adding Event: ", error);
+        });
+        
       }
     },
   },
