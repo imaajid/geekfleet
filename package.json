@@ -1,14 +1,15 @@
 {
   "name": "vuejs-product-app",
   "version": "1.0.0",
+  "private": true,
   "description": "A Vue.js simple product app with firestore",
   "author": "waseembarcha <waseembarcha1993@gmail.com>",
-  "private": true,
   "scripts": {
+    "build": "node build/build.js",
     "dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
-    "start": "npm run dev",
-    "build": "node build/build.js"
+    "start": "npm run dev"
   },
+  "main": ".postcssrc.js",
   "dependencies": {
     "bootstrap": "^4.5.0",
     "firebase": "^4.12.1",
@@ -21,9 +22,12 @@
     "vue-feather-icons": "^5.1.0",
     "vue-material-design-icons": "^4.11.0",
     "vue-material-icon": "^1.0.1",
-    "vue-router": "^3.0.1"
+    "vue-router": "^3.0.1",
+    "vue-session": "^1.0.0",
+    "vuex": "^3.4.0"
   },
   "devDependencies": {
+    "@vue/cli-plugin-vuex": "^4.5.12",
     "autoprefixer": "^7.1.2",
     "babel-core": "^6.22.1",
     "babel-helper-vue-jsx-merge-props": "^2.0.3",
@@ -60,15 +64,14 @@
     "webpack-dev-server": "^2.11.5",
     "webpack-merge": "^4.1.0"
   },
-  "engines": {
-    "node": ">= 6.0.0",
-    "npm": ">= 3.0.0"
-  },
   "browserslist": [
     "> 1%",
     "last 2 versions",
     "not ie <= 8"
   ],
-  "main": ".postcssrc.js",
+  "engines": {
+    "node": ">= 6.0.0",
+    "npm": ">= 3.0.0"
+  },
   "license": "ISC"
 }

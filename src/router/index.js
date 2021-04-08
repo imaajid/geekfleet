@@ -10,53 +10,75 @@ import userList from '@/pages/users/userList'
 import userEdit from '@/pages/users/userEdit'
 import ticketCreate from '@/pages/tickets/ticketCreate'
 import ticketList from '@/pages/tickets/ticketList'
-import ticketEdit from '@/pages/tickets/ticketEdit'
 import deviceCreate from '@/pages/device/deviceCreate'
-import deviceEdit from '@/pages/device/deviceEdit'
 import deviceList from '@/pages/device/deviceList'
 import categoriesCreate from '@/pages/categories/categoriesCreate'
 import categoriesList from '@/pages/categories/categoriesList'
-
+import Introduction from '@/pages/Introduction'
+import Dashboard from '@/pages/dashboard'
 
 import eventCreate from '@/pages/event/eventCreate'
 import eventList from '@/pages/event/eventList'
+
+import store from '@/store'
+
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   mode: 'history',
   routes: [
     {
-      path: '/eventlist/',
+      path: '/dashboard',
+      name: 'dashboard',
+      component: Dashboard
+    },
+    {
+      path: '/eventlist',
       name: 'eventlist',
       component: eventList
     },
     {
-      path: '/eventcreate/',
+      path: '/introduction',
+      name: 'introduction_page',
+      component: Introduction
+    },
+    {
+      path: '/eventcreate',
       name: 'eventcreate',
       component: eventCreate
-    }, 
+    },
     {
-      path: '/categorieslist/',
+      path: '/eventedit/:id',
+      name: 'eventedit',
+      component: eventCreate
+    },
+    {
+      path: '/categorieslist',
       name: 'categorieslist',
       component: categoriesList
-    }, 
+    },
     {
-      path: '/categoriescreate/',
+      path: '/categoriescreate',
       name: 'categoriescreate',
       component: categoriesCreate
-    }, 
+    },
     {
-      path: '/useredit/',
+      path: '/categoryedit/:id',
+      name: 'category_Edit',
+      component: categoriesCreate
+    },
+    {
+      path: '/useredit/:id',
       name: 'useredit',
       component: userEdit
-    },  
+    },
     {
       path: '/usercreate',
       name: 'usercreate',
       component: userCreate
     },
     {
-      path: '/login',
+      path: '/',
       name: 'login',
       component: Login
     },
@@ -70,35 +92,55 @@ export default new Router({
       name: 'userlist',
       component: userList
     },
-    { 
+    {
       path: '/ticketcreate',
       name: 'ticketcreate',
       component: ticketCreate
     },
-    { 
+    {
       path: '/ticketlist',
       name: 'ticketlist',
       component: ticketList
     },
-    { 
-      path: '/ticketedit',
+    {
+      path: '/ticketedit/:id',
       name: 'ticketedit',
-      component: ticketEdit
+      component: ticketCreate
     },
-    { 
+    {
       path: '/devicecreate',
       name: 'devicecreate',
       component: deviceCreate
     },
-    { 
+    {
       path: '/devicelist',
       name: 'devicelist',
       component: deviceList
     },
-    { 
-      path: '/deviceedit',
+    {
+      path: '/deviceedit/:id',
       name: 'deviceedit',
-      component: deviceEdit
+      component: deviceCreate
     }
   ]
 })
+
+router.beforeEach((to, from, next) => {
+  if (to.name === 'login' || to.name === 'register') {
+    store.commit('LOGINUNSUCCESS')
+    if (this.a.app.$session.exists()) {
+      next({ name: 'dashboard' })
+    }
+    next({ name: 'dashboard' })
+  } else if (to.name === 'introduction_page') {
+    store.commit('LOGINUNSUCCESS')
+  } else {
+    store.dispatch(
+      'ALREADYLOGGEDINFROMSESSIONS',
+      this.a.app.$session.get('user')
+    )
+  }
+  next()
+})
+
+export default router

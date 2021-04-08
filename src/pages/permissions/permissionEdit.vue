@@ -62,7 +62,7 @@
 
 <script>
 import Form from "vform";
-import { mapGetters } from "vuex";
+// import { mapGetters } from "vuex";
 
 export default {
   data: () => ({
@@ -71,9 +71,9 @@ export default {
     }),
   }),
 
-  computed: mapGetters({
-    user: "auth/user",
-  }),
+  // computed: mapGetters({
+  //   user: "auth/user",
+  // }),
 
   created() {
     // Fill the form with user data.

@@ -11,12 +11,12 @@
               <div class="col-md-8 pl-md-0">
                 <div class="auth-form-wrapper px-4 py-5">
                   <a href="#" class="noble-ui-logo d-block mb-2"
-                    >Noble<span>UI</span></a
+                    >Geek<span>UI</span></a
                   >
                   <h5 class="text-muted font-weight-normal mb-4">
                     Welcome back! Log in to your account.
                   </h5>
-                  <form class="forms-sample" method="POST" action="">
+                  <form class="forms-sample" @submit="formSubmitted">
                     <div class="form-group">
                       <label for="email">E-Mail Address</label>
                       <input
@@ -24,8 +24,8 @@
                         type="email"
                         class="form-control"
                         name="email"
-                        value=""
                         required
+                        v-model="form.email"
                         autocomplete="email"
                         autofocus
                       />
@@ -37,6 +37,7 @@
                         type="password"
                         class="form-control"
                         name="password"
+                        v-model="form.password"
                         required
                         autocomplete="current-password"
                       />
@@ -72,15 +73,25 @@
 </template>
 <script>
 export default {
-  mounted() {
-    console.log("Component mounted.");
+  data () {
+    return {
+      form: {}
+    }
   },
-};
+
+  methods: {
+    formSubmitted (e) {
+      e.preventDefault()
+      this.$store.dispatch('LOGINACTION', this.form).then(user => {
+        this.$session.start()
+        this.$session.set('user', user)
+        console.log('i am after return', user)
+      })
+    }
+  }
+}
 </script>
 
-
 <style>
-@import "../assets/css/demo_1/style.css";
+@import '../assets/css/demo_1/style.css';
 </style>
-
-

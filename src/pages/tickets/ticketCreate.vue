@@ -14,17 +14,17 @@
       </nav>
     </div>
 
-     <div class="row">
+    <div class="row">
       <div class="col-md-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
             <h6 class="card-title">New Tickets</h6>
-            
+
             <form @submit.prevent="saveTicket" class="forms-sample">
               <div class="form-group">
                 <label for="name">Summary</label>
                 <input
-                  v-model="summary"
+                  v-model="ticket.summary"
                   type="text"
                   class="form-control"
                   id="name"
@@ -36,7 +36,7 @@
               <div class="form-group">
                 <label for="description">Description</label>
                 <textarea
-                  v-model="description"
+                  v-model="ticket.description"
                   class="form-control"
                   id="description"
                   name="description"
@@ -45,16 +45,32 @@
                 ></textarea>
               </div>
               <div class="form-group">
-                <label>User Device</label>
-                <select class="js-example-basic-single w-100" v-model="user_device">
+                <label>Select Device Type</label>
+                <select
+                  class="js-example-basic-single w-100"
+                  v-model="ticket.deviceCategory"
+                >
                   <option value="PC/Laptop">PC/Laptop</option>
                   <option value="Mobile">Mobile</option>
                   <option value="Networking">Networking</option>
                   <option value="Home_Device">Home Device</option>
                 </select>
               </div>
+              <div class="form-group">
+                <label>User Device</label>
+                <input
+                  v-model="ticket.selectedDevice"
+                  type="text"
+                  class="form-control"
+                  autocomplete="off"
+                  placeholder="Device description"
+                />
+              </div>
 
               <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <div @click.prevent="$router.go(-1)" class="btn btn-light">
+                Cancel
+              </div>
             </form>
           </div>
         </div>
@@ -64,35 +80,43 @@
 </template>
 
 <script>
-import db from "@/db/index";
+import db from '@/db/index'
 export default {
-  name: "ticketcreate",
-  data() {
+  name: 'ticketcreate',
+  data () {
     return {
-      id: null,
-      summary: null,
-      description: null,
-      user_device: null,
-    };
+      ticket: {
+        summary: null,
+        description: null,
+        deviceCategory: null,
+        selectedDevice: null,
+        ticketStatus: 'open',
+        ticketUserId: null
+      }
+    }
+  },
+  mounted () {
+    if (this.$route.params.id) {
+      this.$store
+        .dispatch('GETSINGLEITEMTOEDITACTION', {
+          collection: 'tickets',
+          id: this.$route.params.id
+        })
+        .then(ticket => {
+          this.ticket = ticket
+        })
+    }
   },
   methods: {
-    saveTicket() {
-      db.collection("tickets")
-        .add({
-          id: this.id,
-          summary: this.summary,
-          description: this.description,
-          user_device: this.user_device,
-          
-        })
-        .then((docRef) => {
-          console.log("Ticket added: ", docRef.id);
-          this.$router.push("/ticketlist");
-        })
-        .catch((error) => {
-          console.error("Error adding user: ", error);
-        });
-    },
-  },
-};
+    saveTicket () {
+      this.$store.dispatch(
+        this.$route.params.id ? 'UPDATEITEMACTION' : 'CREATEITEMACTION',
+        {
+          collection: 'tickets',
+          item: this.ticket
+        }
+      )
+    }
+  }
+}
 </script>

@@ -21,23 +21,11 @@
             <h6 class="card-title">New Device</h6>
             <form @submit.prevent="saveDevice" class="forms-sample">
               <div class="form-group">
-                <label for="name">id</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="id"
-                  id="id"
-                  autocomplete="off"
-                  placeholder="Summary"
-                  name="summary"
-                />
-              </div>
-              <div class="form-group">
                 <label for="name">Device Name</label>
                 <input
                   type="text"
                   class="form-control"
-                  v-model="name"
+                  v-model="device.name"
                   id="name"
                   autocomplete="off"
                   placeholder="Summary"
@@ -48,7 +36,7 @@
                 <label>Categories</label>
                 <select
                   class="js-example-basic-single w-100"
-                  v-model="categories"
+                  v-model="device.categories"
                 >
                   <option value="PC/Laptop">PC/Laptop</option>
                   <option value="Mobile">Mobile</option>
@@ -61,7 +49,7 @@
                 <textarea
                   class="form-control"
                   id="description"
-                  v-model="serial_number"
+                  v-model="device.serial_number"
                   name="description"
                   placeholder="Description"
                   rows="5"
@@ -72,7 +60,7 @@
                 <textarea
                   class="form-control"
                   id="note"
-                  v-model="note"
+                  v-model="device.note"
                   name="note"
                   placeholder="Description"
                   rows="5"
@@ -80,6 +68,7 @@
               </div>
 
               <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <div @click="$router.go(-1)" class="btn btn-light">Cancel</div>
             </form>
           </div>
         </div>
@@ -89,36 +78,41 @@
 </template>
 
 <script>
-import db from "@/db/index";
 export default {
-  name: "devicecreate",
-  data() {
+  name: 'devicecreate',
+  data () {
     return {
-      id: null,
-      name: null,
-      categories: null,
-      serial_number: null,
-      note: null,
-    };
+      device: {
+        name: null,
+        categories: null,
+        serial_number: null,
+        note: null
+      }
+    }
+  },
+  mounted () {
+    if (this.$route.params.id) {
+      this.$store
+        .dispatch('GETSINGLEITEMTOEDITACTION', {
+          collection: 'devices',
+          id: this.$route.params.id
+        })
+        .then(category => {
+          this.device = category
+        })
+    }
   },
   methods: {
-    saveDevice() {
-      db.collection("devices")
-        .add({
-          id: this.id,
-          name: this.name,
-          categories: this.categories,
-          serial_number: this.serial_number,
-          note: this.note,
-        })
-        .then((docRef) => {
-          console.log("Devices added: ", docRef.id);
-          this.$router.push("/devicelist");
-        })
-        .catch((error) => {
-          console.error("Error adding user: ", error);
-        });
-    },
-  },
-};
+    saveDevice () {
+      this.$store.dispatch(
+        this.$route.params.id ? 'UPDATEITEMACTION' : 'CREATEITEMACTION',
+        {
+          collection: 'devices',
+          item: this.device,
+          id: this.$route.params.id ? this.$route.params.id : null
+        }
+      )
+    }
+  }
+}
 </script>

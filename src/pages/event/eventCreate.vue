@@ -20,18 +20,6 @@
           <div class="card-body">
             <h6 class="card-title">New Event</h6>
             <form @submit.prevent="saveEvent" class="forms-sample">
-              <!-- <div class="form-group">
-                <label for="name">id</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="id for the event"
-                  v-model="id"
-                  id="id"
-                  autocomplete="off"
-                  name="id"
-                />
-              </div> -->
               <div class="form-group">
                 <label for="name"> Event Title</label>
                 <input
@@ -68,20 +56,7 @@
                   name="name"
                 />
               </div>
-              <!-- <div class="form-group">
-                <label for="name">
-                  Number of guests that have already signed up</label
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  v-model="name"
-                  id="name"
-                  autocomplete="off"
-                  placeholder="name"
-                  name="name"
-                />
-              </div> -->
+
               <div class="form-group">
                 <label for="name"> Description </label>
                 <textarea
@@ -95,6 +70,7 @@
               </div>
 
               <button type="submit" class="btn btn-primary mr-2">Submit</button>
+              <div @click="$router.go(-1)" class="btn btn-light">Cancel</div>
             </form>
           </div>
         </div>
@@ -104,28 +80,36 @@
 </template>
 
 <script>
-import db from "@/db/index";
 export default {
-  name: "categoriesCreate",
-  data() {
+  name: 'categoriesCreate',
+  data () {
     return {
-      eventForm: {},
-    };
+      eventForm: {}
+    }
+  },
+  mounted () {
+    if (this.$route.params.id) {
+      this.$store
+        .dispatch('GETSINGLEITEMTOEDITACTION', {
+          collection: 'events',
+          id: this.$route.params.id
+        })
+        .then(category => {
+          this.eventForm = category
+        })
+    }
   },
   methods: {
-    saveEvent() {
-      if (this.eventForm.title && this.eventForm.guests) {
-        db.collection("events")
-          .add(this.eventForm)
-          .then((docRef) => {
-            console.log("Event added: ", docRef.id);
-            this.$router.push("/eventlist");
-          })
-          .catch((error) => {
-            console.error("Error adding Event: ", error);
-          });
-      }
-    },
-  },
-};
+    saveEvent () {
+      this.$store.dispatch(
+        this.$route.params.id ? 'UPDATEITEMACTION' : 'CREATEITEMACTION',
+        {
+          collection: 'events',
+          item: this.eventForm,
+          id: this.$route.params.id ? this.$route.params.id : null
+        }
+      )
+    }
+  }
+}
 </script>

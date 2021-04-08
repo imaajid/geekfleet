@@ -20,18 +20,31 @@
           <div class="card-body">
             <h6 class="card-title">Users Form</h6>
             <form @submit.prevent="saveUser" class="forms-sample">
-              <!-- <div class="form-group">
-                            <label> Id</label>
-                            <input v-model="id" type="number" class="form-control" autocomplete="off"
-                                  >
-                        </div> -->
               <div class="form-group">
                 <label for="Name">Name</label>
                 <input
-                  v-model="name"
+                  v-model="form.name"
                   type="text"
                   class="form-control"
                   placeholder="Name"
+                />
+              </div>
+              <div class="form-group">
+                <label for="Name">Email</label>
+                <input
+                  v-model="form.email"
+                  type="email"
+                  class="form-control"
+                  placeholder="Email"
+                />
+              </div>
+              <div class="form-group">
+                <label for="Name">Password</label>
+                <input
+                  v-model="form.password"
+                  type="password"
+                  class="form-control"
+                  placeholder="*******"
                 />
               </div>
 
@@ -40,7 +53,7 @@
                 <div class="input-group-prepend">
                   <span class="input-group-text">+92</span>
                   <input
-                    v-model="phone"
+                    v-model="form.phone"
                     type="text"
                     class="form-control"
                     placeholder="3352968699"
@@ -50,7 +63,7 @@
               <div class="form-group">
                 <label for="business_email">Address</label>
                 <input
-                  v-model="address"
+                  v-model="form.address"
                   type="text"
                   class="form-control"
                   autocomplete="off"
@@ -59,7 +72,9 @@
               </div>
 
               <button type="submit" class="btn btn-primary mr-2">Submit</button>
-              <a href="" class="btn btn-light">Cancel</a>
+              <div @click.prevent="$router.go(-1)" class="btn btn-light">
+                Cancel
+              </div>
             </form>
           </div>
         </div>
@@ -68,32 +83,23 @@
   </div>
 </template>
 <script>
-import db from "@/db/index";
 export default {
-  name: "userCreate",
-  data() {
+  name: 'userCreate',
+  data () {
     return {
-      name: null,
-      phone: null,
-      address: null,
-    };
+      form: {
+        name: null,
+        phone: null,
+        address: null,
+        email: null,
+        password: null
+      }
+    }
   },
   methods: {
-    saveUser() {
-      db.collection("user")
-        .add({
-          name: this.name,
-          phone: this.phone,
-          address: this.address,
-        })
-        .then((docRef) => {
-          console.log("user added: ", docRef.id);
-          this.$router.push("/userlist");
-        })
-        .catch((error) => {
-          console.error("Error adding user: ", error);
-        });
-    },
-  },
-};
+    saveUser () {
+      this.$store.dispatch('REGISTERUSERACTION', this.form)
+    }
+  }
+}
 </script>
